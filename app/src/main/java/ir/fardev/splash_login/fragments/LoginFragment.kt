@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ir.fardev.splash_login.convertFaNumToEn
 import ir.fardev.splash_login.databinding.FragmentLoginBinding
+import ir.fardev.splash_login.repository.AuthRep
 import ir.fardev.splash_login.ui.theme.PhoneValidator
 
 private val TAG = LoginFragment::class.simpleName
 
 class LoginFragment : Fragment() {
+    private val authRep by lazy {AuthRep()}
     lateinit var binding: FragmentLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +38,10 @@ class LoginFragment : Fragment() {
             override fun onClick(p0: View?) {
                 Log.i(TAG, "initView -> onClick: ")
                 val phoneNumber = binding.phoneEtOTPFragment.text.toString().convertFaNumToEn()
-                val isValidNumber = PhoneValidator(phoneNumber).isValid()
-                if (isValidNumber)
+                val validNumber = PhoneValidator(phoneNumber).validateOrNull()
+                if (!validNumber.isNullOrEmpty())
                 {
-                    requestAndNavigate(phoneNumber)
+                    requestAndNavigate(validNumber)
                 }
                 else
                 {
@@ -58,7 +60,7 @@ class LoginFragment : Fragment() {
             if (otpResp) {
                 navigateToOTPFragment(phoneNumber)
             } else {
-                // TODO: show snakbar
+                Toast.makeText(requireContext(),"خطا در برقراری ارتباط",Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -66,19 +68,18 @@ class LoginFragment : Fragment() {
 
     private fun navigateToOTPFragment(phoneNumber: String) {
         Log.i(TAG, "navigateToOTPFragment: ")
-        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOTPFragment(number = phoneNumber))
+        requireActivity().runOnUiThread {
+
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOTPFragment(number = phoneNumber))
+        }
     }
 
     private fun requestOTP(phoneNumber: String, onOTPResponseCallBack: (isSuccess: Boolean) -> Unit) {
 
         Log.i(TAG, "requestOTP: ")
-        // TODO: Request API CALL HERE
-
-        // TODO : ADD THIS IF API RESULT IS SUCCESSFUL
-        onOTPResponseCallBack.invoke(true)
-
-        // TODO : ADD THIS IF API RESULT IS NOT SUCCESSFUL
-        // onOTPResponseCallBack.invoke(false)
-
+        authRep.getOtp(
+            phoneNumber = phoneNumber,
+            success = {onOTPResponseCallBack.invoke(true)},
+            error = {onOTPResponseCallBack.invoke(false)})
     }
 }

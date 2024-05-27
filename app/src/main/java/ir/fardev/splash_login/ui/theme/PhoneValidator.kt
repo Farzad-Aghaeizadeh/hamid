@@ -5,12 +5,14 @@ import kotlin.math.log
 
 class PhoneValidator (private var number: String) {
     private val TAG = PhoneValidator::class.java.simpleName
-    fun isValid() : Boolean {
-        Log.i(TAG, "isValid: number => $number")
+    fun validateOrNull() : String? {
+        Log.i(TAG, "validateOrNull: number => $number")
+        if (number.isEmpty())
+            return null
         removePlusPrefix()
         val isValidLength = isValidLength()
-        Log.i(TAG, "isValid: result => $isValidLength")
-        return isValidLength
+        Log.i(TAG, "validateOrNull: result => $isValidLength")
+        return number
     }
     private fun removePlusPrefix()
     {
