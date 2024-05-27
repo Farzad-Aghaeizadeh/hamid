@@ -17,5 +17,9 @@
     <fragment
         android:id="@+id/OTPFragment"
         android:name="ir.fardev.splash_login.fragments.OTPFragment"
-        android:label="OTPFragment" />
+        android:label="OTPFragment" >
+        <argument
+            android:name="number"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".fragments.OTPFragment">
 
+    <TextView
+        android:id="@+id/phoneTvOTPFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="your number here"
+        />
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_margin="30dp"
         android:layout_width="match_parent"

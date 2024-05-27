@@ -1,10 +1,12 @@
 package ir.fardev.splash_login.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import ir.fardev.splash_login.R
 import ir.fardev.splash_login.databinding.FragmentOtpBinding
 
@@ -15,16 +17,27 @@ import ir.fardev.splash_login.databinding.FragmentOtpBinding
  */
 class OTPFragment : Fragment()
 {
+    private  val TAG = OTPFragment::class.java.simpleName
     lateinit var binding: FragmentOtpBinding
+    val args: OTPFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+        Log.i(TAG, "onCreate: ")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
+        Log.i(TAG, "onCreateView: ")
         binding = FragmentOtpBinding.inflate(inflater,container,false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.i(TAG, "onViewCreated: ")
+        super.onViewCreated(view, savedInstanceState)
+        binding.phoneTvOTPFragment.text = args.number
+    }
+
 
 }

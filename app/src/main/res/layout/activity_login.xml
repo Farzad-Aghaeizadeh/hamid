@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/black"
     tools:context=".activities.LoginActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -15,6 +14,7 @@
         android:background="@color/white"
         android:id="@+id/loginContainer"
         android:name = "androidx.navigation.fragment.NavHostFragment"
-        app:navGraph = "@navigation/login_nav"/>
+        app:navGraph = "@navigation/login_nav"
+        app:defaultNavHost = "true"/>
 
 </LinearLayout>

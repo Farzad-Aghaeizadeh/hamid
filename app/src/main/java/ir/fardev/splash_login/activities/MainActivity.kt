@@ -18,7 +18,15 @@ class MainActivity : ComponentActivity()
 
     fun gotoSecondActivity()
     {
-        window.decorView.postDelayed({ startActivity(Intent(this, LoginActivity::class.java)) }, 500)
+        val intent = Intent(this,LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        window.decorView.postDelayed({},300)
+
+
+
+        window.decorView.postDelayed({ startActivity(Intent(this, LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }) }, 500)
     }
 
 }
