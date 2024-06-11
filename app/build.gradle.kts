@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "ir.fardev.splash_login"
+    namespace = "ir.fardev.hamid"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ir.fardev.splash_login"
+        applicationId = "ir.fardev.hamid"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
@@ -63,6 +63,15 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.7.2")
     implementation("com.squareup.retrofit2:converter-gson:2.7.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
+    implementation ("com.facebook.stetho:stetho:1.5.1")
+    implementation ("com.facebook.stetho:stetho-okhttp3:1.5.1")
+    implementation ("com.facebook.stetho:stetho-js-rhino:1.5.1")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.5")
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.11.0")
+
+
 
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -82,5 +91,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 
 }

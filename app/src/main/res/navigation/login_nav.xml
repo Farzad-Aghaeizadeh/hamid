@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="ir.fardev.splash_login.fragments.LoginFragment"
+        android:name="ir.fardev.hamid.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="ir.fardev.splash_login.fragments.OTPFragment"
+        android:name="ir.fardev.hamid.fragments.OTPFragment"
         android:label="OTPFragment" >
         <argument
             android:name="number"
